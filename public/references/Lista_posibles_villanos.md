@@ -1,0 +1,9 @@
+- Kurohige
+- Buggy
+- Doflamingo
+- Kaido
+- Bigmom
+- CP0
+- Crocodile
+- Enel
+- Almirantes

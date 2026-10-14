@@ -49,7 +49,7 @@ Las cartas con texto dudoso (foto borrosa / watermark) llevan `needsReview: true
 | `onePieceCardId` | FK futura al proxy OP |
 | `needsReview` | Revisar a mano |
 
-**Pendiente de fotos:** carpeta `Héroes` vacía; no hay cartas **Tecnología** en las referencias aún.
+**Pendiente de fotos / revisión:** cartas de **Tecnología** y **únicas de héroe** sembradas desde `public/references/` con `needsReview: true` (algunos IDs provisionales).
 
 ## Export Card Engine
 
