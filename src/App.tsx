@@ -2,12 +2,14 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import type { AppSettings } from "./types";
 import type { AstroKnightsCard, AstroKnightsCity } from "./data/astroKnights";
 import type { OnePieceCard, OnePieceCity } from "./data/onePiece";
+import type { HeroCard } from "./data/heroes";
 import {
   defaultSettings,
   getAllAkCards,
   getAllAkCities,
   getAllOpCards,
   getAllOpCities,
+  getAllHeroes,
   getSettings,
   deleteAkCard,
   deleteAkCity,
@@ -15,45 +17,54 @@ import {
   deleteOpCity,
   putAkCard,
   putAkCity,
+  putOpCard,
+  putOpCity,
   reseedAstroKnights,
   reseedOnePiece,
   saveAkCard,
   saveAkCity,
   saveOpCard,
   saveOpCity,
+  saveHero,
+  deleteHero,
   saveSettings,
 } from "./db/indexedDb";
 import { SettingsPanel } from "./components/SettingsPanel";
 import { AkReferencePanel } from "./components/AkReferencePanel";
 import { OpReferencePanel } from "./components/OpReferencePanel";
+import { EquivalenceValidationPanel } from "./components/EquivalenceValidationPanel";
+import { HeroesPanel } from "./components/HeroesPanel";
 import "./styles/app.css";
 
-type View = "onepiece" | "astro";
+type View = "onepiece" | "astro" | "equivalencias" | "heroes";
 
 export default function App() {
-  const [view, setView] = useState<View>("onepiece");
+  const [view, setView] = useState<View>("equivalencias");
   const [akCards, setAkCards] = useState<AstroKnightsCard[]>([]);
   const [akCities, setAkCities] = useState<AstroKnightsCity[]>([]);
   const [opCards, setOpCards] = useState<OnePieceCard[]>([]);
   const [opCities, setOpCities] = useState<OnePieceCity[]>([]);
+  const [heroes, setHeroes] = useState<HeroCard[]>([]);
   const [settings, setSettings] = useState<AppSettings>(defaultSettings());
   const [loading, setLoading] = useState(true);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
-    const [s, akC, akCity, opC, opCity] = await Promise.all([
+    const [s, akC, akCity, opC, opCity, heroRows] = await Promise.all([
       getSettings(),
       getAllAkCards(),
       getAllAkCities(),
       getAllOpCards(),
       getAllOpCities(),
+      getAllHeroes(),
     ]);
     setSettings(s);
     setAkCards(akC);
     setAkCities(akCity);
     setOpCards(opC);
     setOpCities(opCity);
+    setHeroes(heroRows);
   }, []);
 
   useEffect(() => {
@@ -105,11 +116,31 @@ export default function App() {
         <button
           type="button"
           className={
+            view === "equivalencias"
+              ? "view-nav__btn view-nav__btn--active"
+              : "view-nav__btn"
+          }
+          onClick={() => setView("equivalencias")}
+        >
+          Validar equivalencias
+        </button>
+        <button
+          type="button"
+          className={
             view === "onepiece" ? "view-nav__btn view-nav__btn--active" : "view-nav__btn"
           }
           onClick={() => setView("onepiece")}
         >
           Base One Piece
+        </button>
+        <button
+          type="button"
+          className={
+            view === "heroes" ? "view-nav__btn view-nav__btn--active" : "view-nav__btn"
+          }
+          onClick={() => setView("heroes")}
+        >
+          Héroes
         </button>
         <button
           type="button"
@@ -176,6 +207,55 @@ export default function App() {
                 await reseedAstroKnights();
                 await refresh();
                 setToast("Base Astro Knights re-sembrada.");
+              })();
+            }}
+          />
+        ) : view === "heroes" ? (
+          <HeroesPanel
+            heroes={heroes}
+            onSave={async (hero, previousId) => {
+              await saveHero(hero, previousId);
+              await refresh();
+              setToast("Héroe guardado.");
+            }}
+            onDelete={async (hero) => {
+              await deleteHero(hero.id);
+              await refresh();
+              setToast("Héroe borrado.");
+            }}
+          />
+        ) : view === "equivalencias" ? (
+          <EquivalenceValidationPanel
+            opCards={opCards}
+            opCities={opCities}
+            akCards={akCards}
+            akCities={akCities}
+            onSaveCard={async (card, previousId) => {
+              await saveOpCard(card, previousId);
+              await refresh();
+              setToast("Equivalencia guardada.");
+            }}
+            onSaveCity={async (city, previousId) => {
+              await saveOpCity(city, previousId);
+              await refresh();
+              setToast("Equivalencia de ciudad guardada.");
+            }}
+            onToggleCardValidated={(card) => {
+              void (async () => {
+                await putOpCard({
+                  ...card,
+                  equivalenceValidated: !card.equivalenceValidated,
+                });
+                await refresh();
+              })();
+            }}
+            onToggleCityValidated={(city) => {
+              void (async () => {
+                await putOpCity({
+                  ...city,
+                  equivalenceValidated: !city.equivalenceValidated,
+                });
+                await refresh();
               })();
             }}
           />

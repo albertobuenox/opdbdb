@@ -10,9 +10,11 @@ import {
 import {
   ONE_PIECE_CARDS,
   ONE_PIECE_CITIES,
+  normalizeThemeChips,
   type OnePieceCard,
   type OnePieceCity,
 } from "../data/onePiece";
+import { normalizeHero, type HeroCard } from "../data/heroes";
 
 interface OnePieceDeckBuildingDB extends DBSchema {
   cards: {
@@ -55,10 +57,14 @@ interface OnePieceDeckBuildingDB extends DBSchema {
       byAkCardId: string;
     };
   };
+  heroes: {
+    key: string;
+    value: HeroCard;
+  };
 }
 
 const DB_NAME = "one-piece-deck-building";
-const DB_VERSION = 2;
+const DB_VERSION = 3;
 const SETTINGS_KEY = "main";
 const AK_SEED_VERSION = 2;
 const OP_SEED_VERSION = 2;
@@ -116,6 +122,9 @@ function getDb() {
           op.createIndex("byDeck", "deck");
           op.createIndex("byCategory", "category");
           op.createIndex("byAkCardId", "astroKnightsCardId");
+        }
+        if (!db.objectStoreNames.contains("heroes")) {
+          db.createObjectStore("heroes", { keyPath: "id" });
         }
       },
     }).then(async (db) => {
@@ -270,16 +279,35 @@ export async function saveAkCity(
   await db.put("akCities", city);
 }
 
+function normalizeOpCard(card: OnePieceCard): OnePieceCard {
+  return {
+    ...card,
+    equivalenceValidated: Boolean(card.equivalenceValidated),
+    themeChips: normalizeThemeChips(card.themeChips),
+  };
+}
+
+function normalizeOpCity(city: OnePieceCity): OnePieceCity {
+  return {
+    ...city,
+    equivalenceValidated: Boolean(city.equivalenceValidated),
+  };
+}
+
 export async function getAllOpCities(): Promise<OnePieceCity[]> {
   const db = await getDb();
   const rows = await db.getAll("opCities");
-  return rows.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
+  return rows
+    .map(normalizeOpCity)
+    .sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
 }
 
 export async function getAllOpCards(): Promise<OnePieceCard[]> {
   const db = await getDb();
   const rows = await db.getAll("opCards");
-  return rows.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
+  return rows
+    .map(normalizeOpCard)
+    .sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
 }
 
 export async function putOpCard(card: OnePieceCard): Promise<void> {
@@ -334,6 +362,37 @@ export async function saveOpCity(
     return;
   }
   await db.put("opCities", city);
+}
+
+export async function getAllHeroes(): Promise<HeroCard[]> {
+  const db = await getDb();
+  const rows = await db.getAll("heroes");
+  return rows
+    .map(normalizeHero)
+    .sort((a, b) => a.name.localeCompare(b.name, "es"));
+}
+
+export async function saveHero(hero: HeroCard, previousId = ""): Promise<void> {
+  const db = await getDb();
+  const stored = normalizeHero(hero);
+  const renaming = Boolean(previousId) && previousId !== stored.id;
+  if (!previousId || renaming) {
+    const clash = await db.get("heroes", stored.id);
+    if (clash) throw new Error(`Ya existe un héroe con id «${stored.id}».`);
+  }
+  if (renaming) {
+    const tx = db.transaction("heroes", "readwrite");
+    await tx.store.delete(previousId);
+    await tx.store.put(stored);
+    await tx.done;
+    return;
+  }
+  await db.put("heroes", stored);
+}
+
+export async function deleteHero(id: string): Promise<void> {
+  const db = await getDb();
+  await db.delete("heroes", id);
 }
 
 export async function getAllCards(): Promise<Card[]> {

@@ -6,6 +6,7 @@ import type {
   OpDeck,
   OnePieceCard,
 } from "../data/onePiece";
+import { ThemeChipPicker } from "./ThemeChipPicker";
 
 interface Props {
   open: boolean;
@@ -30,6 +31,8 @@ function blank(): OnePieceCard {
     level: null,
     quantity: 1,
     needsReview: false,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal: "",
     astroKnightsCardId: "",
   };
@@ -45,7 +48,7 @@ export function OpCardEditModal({ open, initial, onClose, onSave }: Props) {
 
   useEffect(() => {
     if (!open || !initial) return;
-    setValues({ ...initial });
+    setValues({ ...initial, themeChips: initial.themeChips ?? [] });
     setCostEmpty(initial.cost === null);
     setLevelEmpty(initial.level === null);
     setError(null);
@@ -86,6 +89,7 @@ export function OpCardEditModal({ open, initial, onClose, onSave }: Props) {
       cost: costEmpty ? null : Number(values.cost ?? 0),
       level: levelEmpty ? null : Number(values.level ?? 1),
       category: categoryForType(values.type),
+      themeChips: values.themeChips ?? [],
     };
     setSaving(true);
     setError(null);
@@ -204,6 +208,24 @@ export function OpCardEditModal({ open, initial, onClose, onSave }: Props) {
               onChange={(e) => update("astroKnightsCardId", e.target.value)}
             />
           </label>
+          <label className="field field--span2 check-field">
+            <span>Equivalencia</span>
+            <label className="check">
+              <input
+                type="checkbox"
+                checked={values.equivalenceValidated}
+                onChange={(e) => update("equivalenceValidated", e.target.checked)}
+              />
+              Proxy/reskin decidido y pensado
+            </label>
+          </label>
+          <div className="field field--span2">
+            <span>Sugerencias temáticas</span>
+            <ThemeChipPicker
+              value={values.themeChips ?? []}
+              onChange={(themeChips) => update("themeChips", themeChips)}
+            />
+          </div>
           <label className="field field--span2">
             <span>Descripción</span>
             <textarea

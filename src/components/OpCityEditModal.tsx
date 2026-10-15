@@ -18,6 +18,7 @@ function blank(): OnePieceCity {
     initialCharge: 0,
     chargeLevels: [0, 1, 2],
     needsReview: false,
+    equivalenceValidated: false,
     imageProposal: "",
     astroKnightsCityId: "",
   };
@@ -137,6 +138,17 @@ export function OpCityEditModal({ open, initial, onClose, onSave }: Props) {
               value={values.astroKnightsCityId}
               onChange={(e) => update("astroKnightsCityId", e.target.value)}
             />
+          </label>
+          <label className="field field--span2 check-field">
+            <span>Equivalencia</span>
+            <label className="check">
+              <input
+                type="checkbox"
+                checked={values.equivalenceValidated}
+                onChange={(e) => update("equivalenceValidated", e.target.checked)}
+              />
+              Proxy/reskin decidido y pensado
+            </label>
           </label>
           <label className="field field--span2">
             <span>Descripción</span>

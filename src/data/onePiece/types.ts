@@ -1,5 +1,9 @@
 /** Tipos de la base One Piece (proxies temáticos de Astro Knights). */
 
+import type { OpThemeChipId } from "./themeChips";
+
+export type { OpThemeChipId } from "./themeChips";
+
 export type OpCardType = "voluntad" | "tecnica" | "tesoro";
 
 export type OpDeck = "basico_heroe" | "mercado";
@@ -15,6 +19,11 @@ export interface OnePieceCity {
   initialCharge: number;
   chargeLevels: number[];
   needsReview: boolean;
+  /**
+   * Proxy/reskin ya decidido: el equivalente One Piece está pensado y aceptado.
+   * Independiente de `needsReview` (calidad de texto/foto).
+   */
+  equivalenceValidated: boolean;
   /** Propuesta de ilustración para la carta. */
   imageProposal: string;
   /** Personajes del art prompt. */
@@ -36,6 +45,13 @@ export interface OnePieceCard {
   level: number | null;
   quantity: number;
   needsReview: boolean;
+  /**
+   * Proxy/reskin ya decidido: el equivalente One Piece está pensado y aceptado.
+   * Independiente de `needsReview` (calidad de texto/foto).
+   */
+  equivalenceValidated: boolean;
+  /** Chips de sugerencia temática (Luffy, Zoro, Voluntad…). */
+  themeChips: OpThemeChipId[];
   /** Propuesta de ilustración para la carta. */
   imageProposal: string;
   /** Personajes del art prompt. */

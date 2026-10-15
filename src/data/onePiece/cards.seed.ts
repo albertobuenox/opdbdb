@@ -23,6 +23,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: null,
     quantity: 1,
     needsReview: false,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Primer plano de un personaje mirando al horizonte con una sonrisa determinada; fondo simple (cielo o mar); sensación de «quiero intentarlo», sin épica todavía.",
     astroKnightsCardId: "076",
@@ -39,6 +41,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: null,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Nami con el Clima-Tact desplegando una brisa/nube que reordena la mano de un aliado; mapa y clima; sensación de apoyo táctico (única Nami).",
     artPromptCharacters: "Nami",
@@ -57,6 +61,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: null,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Usopp apuntando con Kabuto / honda: dispara «usando» el golpe de un aliado (silueta del arma ajena en el proyectil); mentira épica hecha verdad (única Usopp).",
     artPromptCharacters: "Usopp",
@@ -75,6 +81,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: null,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Franky ofreciendo una mejora cyborg / Cola Strong a un nakama que descarta algo para ganar un «slot» de equipo; taller, chispas, SUPER (única Franky).",
     artPromptCharacters: "Franky",
@@ -95,6 +103,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 1,
     quantity: 2,
     needsReview: false,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Despedida en Alabasta: la tripulación y el pueblo levantan el brazo formando una X en la arena; Vivi al fondo; polvo dorado y emoción contenida.",
     astroKnightsCardId: "010",
@@ -111,6 +121,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 1,
     quantity: 2,
     needsReview: false,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "La tripulación del Sombrero de Paja junta, hombro con hombro, lista para pelear; poses icónicas de cada uno; sensación de equipo completo al máximo.",
     astroKnightsCardId: "012",
@@ -126,6 +138,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 1,
     quantity: 2,
     needsReview: false,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Fiesta de liberación (Alabasta/Dressrosa): gente celebrando, banderas, lágrimas de alivio; el tirano caído fuera de foco; luz cálida de victoria colectiva.",
     astroKnightsCardId: "014",
@@ -141,6 +155,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 1,
     quantity: 2,
     needsReview: false,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "La Jolly Roger del Sombrero de Paja ondeando sobre un mástil o tejado; siluetas de civiles protegidos debajo; símbolo de que «esta tierra tiene protección».",
     astroKnightsCardId: "016",
@@ -157,6 +173,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 1,
     quantity: 2,
     needsReview: false,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Escena de unirse a la tripulación: apretón de manos o brindis en cubierta; Luffy ofreciendo el lugar; sonrisas; el barco al fondo al atardecer.",
     astroKnightsCardId: "018",
@@ -174,6 +192,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 2,
     quantity: 1,
     needsReview: false,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Primer plano de un periódico del mundo (World Economy News) con titular impactante; manos temblando al leerlo; lluvia o viento; el mundo entero se entera.",
     astroKnightsCardId: "020",
@@ -189,6 +209,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 2,
     quantity: 2,
     needsReview: false,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Robin en Enies Lobby gritando «¡Quiero vivir!» mientras la tripulación corre hacia ella por el puente; fuego y escombros; desesperación convertida en esperanza.",
     astroKnightsCardId: "021",
@@ -205,6 +227,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 2,
     quantity: 2,
     needsReview: false,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Luffy (o el héroe) señalando el cielo / el mar y declarando que será el Rey de los Piratas; aliados detrás escuchando; horizonte infinito.",
     astroKnightsCardId: "023",
@@ -220,6 +244,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 2,
     quantity: 2,
     needsReview: false,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Funeral de Going Merry: el barco ardiendo en el mar al atardecer; la tripulación de espaldas, llorando; espíritu del barco despidiéndose entre llamas.",
     astroKnightsCardId: "025",
@@ -236,6 +262,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 2,
     quantity: 2,
     needsReview: false,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Marineford: Ace herido en brazos de Luffy, sonrisa débil, cenizas de magma alrededor; contraste frío del hielo y el calor residual; silencio tras el golpe.",
     astroKnightsCardId: "027",
@@ -252,6 +280,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 2,
     quantity: 2,
     needsReview: false,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Roger riendo en la ejecución (o un mapa/Laugh Tale en silueta) y la frase «el One Piece… ¡existe!»; multitud en shock; el sueño de toda una era encendido.",
     astroKnightsCardId: "029",
@@ -269,6 +299,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: null,
     quantity: 1,
     needsReview: false,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Puñetazo simple a cámara: brazo extendido, impacto pequeño, expresión concentrada; sin Haki ni efectos enormes; técnica de principiante.",
     astroKnightsCardId: "094",
@@ -285,6 +317,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: null,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Luffy estirando el brazo en Gomu Gomu no Pistol; si descarta otra técnica, el puño se potencia (Gear flash); única Luffy.",
     artPromptCharacters: "Monkey D. Luffy",
@@ -302,6 +336,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: null,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Sanji pateando con elegancia (Collier); chispa de voluntad al conectar; traje impecable; única Sanji.",
     artPromptCharacters: "Sanji",
@@ -320,6 +356,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: null,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Zoro con tres espadas (Oni Giri); una hoja «vuelve» a su mano desde el descarte en un destello; única Zoro.",
     artPromptCharacters: "Roronoa Zoro",
@@ -340,6 +378,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 1,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Intervención médica/táctica en cubierta: se descarta lo inútil y un nakama reordena su mano; maletín, vendas, sensación de reset.",
     astroKnightsCardId: "001",
@@ -355,6 +395,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 2,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Carpinteros de Water 7 / Galley-La reparando una ciudad destruida: andamios, martillos, madera nueva; la ciudad revive (nota: reparación de ciudad).",
     artPromptCharacters: "Carpinteros de Water 7",
@@ -373,6 +415,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 1,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Reparto rápido de armas en cubierta: un nakama gana un hueco de equipo y otro se equipa al instante; cofre abierto, manos pasando katanas/pistolas.",
     astroKnightsCardId: "003",
@@ -388,6 +432,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 2,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Den Den Mushi conectando tripulación y ciudad: señales, antenas, aliado y ciudad «cargando» a la vez; coordinación a distancia.",
     astroKnightsCardId: "004",
@@ -404,6 +450,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 2,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Sabiduría de Ohara: pergamino/Poneglyph que carga la ciudad y permite quemar una carta de la mano; libros, fuego contenido, conocimiento peligroso.",
     astroKnightsCardId: "005",
@@ -419,6 +467,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 2,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "La tripulación jura proteger el lugar: doble pulso de energía sobre la ciudad; manos unidas, bandera, cielo al amanecer.",
     astroKnightsCardId: "006",
@@ -434,6 +484,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 3,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Ataque coordinado: un personaje usa la técnica equipada de otro sin gastarla; siluetas superpuestas, timing perfecto, sin descartar el arma.",
     astroKnightsCardId: "007",
@@ -450,6 +502,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 3,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Kuma comprimiendo aire con la pata (Ursus Shock): o aplastas a un subordinado pagando daño, o «empujas» info/cartas a un aliado (nota: Kuma golpeando).",
     artPromptCharacters: "Bartholomew Kuma",
@@ -470,6 +524,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 1,
     quantity: 2,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Trafalgar Law activando ROOM y un bisturí/Scan que «corta» la carta superior de un suministro; esfera azul, precisión quirúrgica.",
     artPromptCharacters: "Trafalgar Law",
@@ -487,6 +543,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 1,
     quantity: 2,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Usopp (o golpe inspirador al pueblo): un disparo/gesto que anima a la ciudad a cargar; civiles levantando ánimo al fondo.",
     artPromptCharacters: "Usopp",
@@ -504,6 +562,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 1,
     quantity: 2,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Patada Rankyaku estilo carpintero/Kaku: hoja de aire que aleja amenaza y «apuntala» la ciudad (+1 vida); astillero al fondo.",
     artPromptCharacters: "Kaku",
@@ -522,6 +582,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 1,
     quantity: 2,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Zoro con Wado Ichimonji en la boca: modo versátil (espacio) o tajo puro a 3 de daño; tres espadas, concentración feroz.",
     artPromptCharacters: "Roronoa Zoro",
@@ -539,6 +601,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 1,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Nico Robin brotando brazos (Clutch / crujir cuellos): toque al equipar y agarre final demoledor; pétalos y horror elegante.",
     artPromptCharacters: "Nico Robin",
@@ -556,6 +620,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 1,
     quantity: 2,
     needsReview: false,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Corte de espada con destello (Zoro/espadachín): arco brillante, chispas; el espadachín recupera aliento tras el tajo; dinámica diagonal.",
     astroKnightsCardId: "040",
@@ -574,6 +640,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 2,
     quantity: 2,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Corte de Zoro que parte en dos frentes: golpe principal + esquirla a un subordinado; arcos de hoja, estilo Santoryu.",
     artPromptCharacters: "Roronoa Zoro",
@@ -591,6 +659,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 2,
     quantity: 2,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Law con Kikoku / Injection Shot: bisturí que perfora y «gasta» una carta de la mano como coste; ROOM, sangre quirúrgica controlada.",
     artPromptCharacters: "Trafalgar Law",
@@ -609,6 +679,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 2,
     quantity: 2,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Martillo teledirigido / Smile (Loki): golpeazo que hace volver un arma a la mano; runas, size overpower, Elbaf.",
     artPromptCharacters: "Loki",
@@ -627,6 +699,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 2,
     quantity: 2,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Zoro en Asura (9 espadas / siluetas): más técnicas equipadas = más presión; demonio de nueve hojas, aura oscura.",
     artPromptCharacters: "Roronoa Zoro (Asura)",
@@ -645,6 +719,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 2,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Kuma / Pacifista derribando a un subordinado de un golpe; aliados recuperan aliento y vida; láser o paw-paw al impacto.",
     artPromptCharacters: "Bartholomew Kuma / Pacifista",
@@ -664,6 +740,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 3,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Rocks D. Xebec imponiendo presión: golpe que abre camino y da impulso (cartas) a cada aliado; era pirata oscura, Conqueror brutal.",
     artPromptCharacters: "Rocks D. Xebec",
@@ -681,6 +759,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 3,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Gol D. Roger (Divine Departure): tajo/onda que atraviesa defensa; Roger y la ciudad recargan con aura dorada tras el golpe.",
     artPromptCharacters: "Gol D. Roger",
@@ -699,6 +779,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 3,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Barba Blanca / Edward Newgate: bisento y grietas del Gura Gura; al equipar «rompe» una carta; terremoto final de 6 de daño.",
     artPromptCharacters: "Edward Newgate (Barba Blanca)",
@@ -717,6 +799,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 3,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Kozuki Oden: aliado recibe impulso (roba) y el tajo escala con su mano; vapor de Enma, Wano, danza del samurái.",
     artPromptCharacters: "Kozuki Oden",
@@ -735,6 +819,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 3,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Vegapunk / Mother Flame: al equipar recuperas una voluntad jugada; luego descarga energética devastadora; lab, luz solar artificial.",
     artPromptCharacters: "Vegapunk",
@@ -753,6 +839,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 3,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Monkey D. Garp — Galaxy Impact: puño/onda que reparte 7 de daño entre jefe y esbirros; cielo roto, Haki masivo.",
     artPromptCharacters: "Monkey D. Garp",
@@ -770,6 +858,8 @@ export const ONE_PIECE_CARDS: OnePieceCard[] = [
     level: 3,
     quantity: 1,
     needsReview: true,
+    equivalenceValidated: false,
+    themeChips: [],
     imageProposal:
       "Shanks — Kamusari / finisher: un solo tajo de Conqueror a 9 de daño; capa roja, Gryphon, silencio antes del corte.",
     artPromptCharacters: "Shanks",

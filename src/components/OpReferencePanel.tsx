@@ -6,6 +6,7 @@ import {
   ArtPromptModal,
   type ArtPromptTarget,
 } from "./ArtPromptModal";
+import { ThemeChipPicker } from "./ThemeChipPicker";
 
 type Tab = "cartas" | "ciudades";
 
@@ -22,27 +23,25 @@ interface Props {
   onReseed: () => void;
 }
 
-function CategoryDot({ category }: { category: OnePieceCard["category"] }) {
-  const isVoluntad = category === "voluntad";
-  return (
-    <span
-      className={
-        isVoluntad ? "type-dot type-dot--energia" : "type-dot type-dot--arma"
-      }
-      title={isVoluntad ? "Voluntad" : "Técnica"}
-      aria-label={isVoluntad ? "Voluntad" : "Técnica"}
-    />
-  );
-}
-
-function deckLabel(deck: OnePieceCard["deck"]) {
-  return deck === "basico_heroe" ? "Básico héroe" : "Mercado";
-}
-
 function typeLabel(type: OnePieceCard["type"]) {
   if (type === "voluntad") return "Voluntad";
   if (type === "tecnica") return "Técnica";
   return "Tesoro";
+}
+
+function TypeDot({ type }: { type: OnePieceCard["type"] }) {
+  const label = typeLabel(type);
+  const className =
+    type === "voluntad"
+      ? "type-dot type-dot--energia"
+      : type === "tecnica"
+        ? "type-dot type-dot--arma"
+        : "type-dot type-dot--tesoro";
+  return <span className={className} title={label} aria-label={label} />;
+}
+
+function deckLabel(deck: OnePieceCard["deck"]) {
+  return deck === "basico_heroe" ? "Básico héroe" : "Mercado";
 }
 
 export function OpReferencePanel({
@@ -58,7 +57,7 @@ export function OpReferencePanel({
 }: Props) {
   const [tab, setTab] = useState<Tab>("cartas");
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("");
+  const [typeFilter, setTypeFilter] = useState("");
   const [deck, setDeck] = useState("");
   const [editingCard, setEditingCard] = useState<OnePieceCard | null>(null);
   const [editingCity, setEditingCity] = useState<OnePieceCity | null>(null);
@@ -67,7 +66,7 @@ export function OpReferencePanel({
   const filteredCards = useMemo(() => {
     const q = search.trim().toLowerCase();
     return cards.filter((c) => {
-      if (category && c.category !== category) return false;
+      if (typeFilter && c.type !== typeFilter) return false;
       if (deck && c.deck !== deck) return false;
       if (!q) return true;
       const akName = akCardNames[c.astroKnightsCardId] ?? "";
@@ -80,7 +79,7 @@ export function OpReferencePanel({
         akName.toLowerCase().includes(q)
       );
     });
-  }, [cards, search, category, deck, akCardNames]);
+  }, [cards, search, typeFilter, deck, akCardNames]);
 
   const filteredCities = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -110,6 +109,8 @@ export function OpReferencePanel({
           <p className="ak-panel__legend">
             <span className="type-dot type-dot--energia" aria-hidden /> Voluntad
             <span className="type-dot type-dot--arma" aria-hidden /> Técnicas
+            <span className="type-dot type-dot--tesoro" aria-hidden /> Tesoro
+            <span className="muted tiny">(≈ Tecnología AK)</span>
           </p>
         </div>
         <button type="button" className="btn btn--ghost" onClick={onReseed}>
@@ -151,12 +152,13 @@ export function OpReferencePanel({
           <>
             <select
               className="input"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              value={typeFilter}
+              onChange={(e) => setTypeFilter(e.target.value)}
             >
-              <option value="">Todas las familias</option>
+              <option value="">Todos los tipos</option>
               <option value="voluntad">Voluntad</option>
-              <option value="tecnicas">Técnicas</option>
+              <option value="tecnica">Técnica</option>
+              <option value="tesoro">Tesoro</option>
             </select>
             <select
               className="input"
@@ -183,6 +185,7 @@ export function OpReferencePanel({
                 <th>Nivel</th>
                 <th>Coste</th>
                 <th>AK</th>
+                <th>Temática</th>
                 <th>Descripción</th>
                 <th>Imagen propuesta</th>
                 <th />
@@ -197,7 +200,7 @@ export function OpReferencePanel({
                   </td>
                   <td>
                     <span className="type-cell">
-                      <CategoryDot category={card.category} />
+                      <TypeDot type={card.type} />
                       {typeLabel(card.type)}
                     </span>
                   </td>
@@ -209,6 +212,14 @@ export function OpReferencePanel({
                     <div className="muted tiny">
                       {akCardNames[card.astroKnightsCardId] ?? "—"}
                     </div>
+                  </td>
+                  <td>
+                    <ThemeChipPicker
+                      compact
+                      readOnly
+                      value={card.themeChips ?? []}
+                      onChange={() => {}}
+                    />
                   </td>
                   <td className="desc-cell">{card.description}</td>
                   <td className="desc-cell desc-cell--art">{card.imageProposal}</td>
@@ -248,7 +259,7 @@ export function OpReferencePanel({
               ))}
               {filteredCards.length === 0 && (
                 <tr>
-                  <td colSpan={10} className="empty">
+                  <td colSpan={11} className="empty">
                     Sin resultados.
                   </td>
                 </tr>
